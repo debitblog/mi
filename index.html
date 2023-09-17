@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock and News</title>
+    <style>
+        /* Add your CSS styles here */
+        /* You can style the layout, fonts, colors, etc. */
+    </style>
+</head>
+<body>
+    <h1>World Clock and News</h1>
+    
+    <div class="city-container">
+        <div class="city">
+            <h2>New York</h2>
+            <div class="time" id="new-york-time"></div>
+            <div class="note">Notes for New York</div>
+            <div class="news" id="new-york-news"></div>
+        </div>
+        
+        <!-- Repeat this city block for other cities -->
+        
+    </div>
+
+    <script>
+        // JavaScript code to update time and news for each city
+        function updateTime(cityId) {
+            const cityTimeElement = document.getElementById(cityId + '-time');
+            const cityNewsElement = document.getElementById(cityId + '-news');
+            const cityTimeZoneOffset = new Date().getTimezoneOffset() / 60; // Get local timezone offset in hours
+
+            // Replace 'cityTimeOffset' with the actual UTC offset of the city
+            const cityTimeOffset = -5; // Example: New York is UTC-5
+            const currentTime = new Date().getUTCHours() + cityTimeOffset + cityTimeZoneOffset;
+            const currentMinutes = new Date().getUTCMinutes();
+
+            cityTimeElement.textContent = `Time: ${currentTime}:${currentMinutes < 10 ? '0' : ''}${currentMinutes}`;
+            
+            // You can fetch news data from an API and display it here
+            // Example: fetchNewsForCity(cityId).then(news => cityNewsElement.textContent = news);
+        }
+
+        // Call updateTime function for each city when the page loads
+        updateTime('new-york');
+        // Call it for other cities
